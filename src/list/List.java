@@ -35,24 +35,12 @@ public class List {
         return this.name.get();
     }
 
-    public SimpleStringProperty nameProperty() {
-        return name;
-    }
 
     public String getDescription() {
         return description.get();
     }
 
-    public SimpleObjectProperty dateProperty() {
-        return date;
-    }
 
-    public SimpleDoubleProperty estimatedProperty(){
-        return estimated;
-    }
-    public SimpleIntegerProperty pendingProperty(){
-        return pending;
-    }
 
 
     public java.util.List<Article> getPendingArticles(){
@@ -72,6 +60,14 @@ public class List {
                 //.mapToDouble( article -> article.getPrice() * article.getQuantity())
                 .sum();
 
+    }
+    public void toggleArticlebyName(String name){
+        for (int x=0; x<articles.size(); x++){
+            if (articles.get(x).getName() == name){
+                Article articleToToggle = articles.get(x);
+                articleToToggle.toggle();
+            }
+        }
     }
 
     public void addArticle(Article article) {

@@ -44,6 +44,14 @@ public class Article {
     public String getName(){
         return this.name.get();
     }
+    public void toggle(){
+        if (!this.getState()){
+            this.state = new SimpleBooleanProperty(true);
+        }
+        else {
+            this.state = new SimpleBooleanProperty(false);
+        }
+    }
 
     public int getQuantity(){
         return this.quantity.get();
@@ -66,6 +74,7 @@ public class Article {
     public boolean getState() {
         return state.get();
     }
+
     public void setState(boolean state) {
         this.state.set(state);
     }

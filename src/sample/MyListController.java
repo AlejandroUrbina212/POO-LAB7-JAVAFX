@@ -8,12 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import list.List;
+
 import java.io.IOException;
 
 public class MyListController {
@@ -45,6 +44,9 @@ public class MyListController {
     Button backToSampleButton;
 
     private ObservableList<Article> data;
+    @FXML
+
+
 
     public void showData(){
         listNameLabel.setText(this.currentListName);
@@ -132,6 +134,18 @@ public class MyListController {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    public void onClickToggle(){
+        Article article =  articlesTable.getSelectionModel().getSelectedItem();
+        if (article != null){
+            Administrator.getInstance().getListByName(this.currentListName).toggleArticlebyName(article.getName());
+            showData();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Aviso!");
+            alert.setHeaderText("Por favor seleccione una lista de la tabla!");
+            alert.show();
         }
     }
 

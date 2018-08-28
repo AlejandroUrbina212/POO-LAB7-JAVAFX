@@ -34,7 +34,7 @@
             <Font name="Comic Sans MS" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="changeStateButton" layoutX="500.0" layoutY="428.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="123.0" text="Cambiar Estado">
+      <Button fx:id="changeStateButton" layoutX="500.0" layoutY="428.0" mnemonicParsing="false" onAction="#onClickToggle" prefHeight="39.0" prefWidth="123.0" text="Cambiar Estado">
          <font>
             <Font name="Comic Sans MS" size="14.0" />
          </font></Button>
