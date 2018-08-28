@@ -129,6 +129,7 @@ public class MyListController {
             //No se necesita enviar nada ya que se vuelve a incicializar
             // Muestra la ventana
             stage.show();
+
             Stage currentStage = (Stage) backToSampleButton.getScene().getWindow();
             currentStage.hide();
         }

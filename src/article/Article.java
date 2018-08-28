@@ -44,6 +44,7 @@ public class Article {
     public String getName(){
         return this.name.get();
     }
+
     public void toggle(){
         if (!this.getState()){
             this.state = new SimpleBooleanProperty(true);
