@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MyListController {
-    private String name;
+    private String currentListName;
     private String description;
     @FXML
     Label listNameLabel;
@@ -46,14 +46,13 @@ public class MyListController {
 
     private ObservableList<Article> data;
 
-
     public void showData(){
-        listNameLabel.setText(this.name);
+        listNameLabel.setText(this.currentListName);
         listDescriptionLabel.setText(this.description);
-        Double pending = Administrator.getInstance().getListByName(this.name).getSumOfPendings();
+        Double pending = Administrator.getInstance().getListByName(this.currentListName).getSumOfPendings();
         pendingLabel.setText(pending.toString());
 
-        this.data = FXCollections.observableArrayList(Administrator.getInstance().getListByName(this.name).getAllArticles());
+        this.data = FXCollections.observableArrayList(Administrator.getInstance().getListByName(this.currentListName).getAllArticles());
         articleColumn.setCellValueFactory(
                 new  PropertyValueFactory<>("name")
         );
@@ -73,7 +72,7 @@ public class MyListController {
 
     }
     public void setProperties(String name, String description){
-        this.name = name;
+        this.currentListName = name;
         this.description = description;
         Administrator administrator = Administrator.getInstance();
         administrator.addList(name, description);
@@ -81,14 +80,21 @@ public class MyListController {
 
     }
     public void redirectedFromArticleAdded(String name){
-        this.name = name;
+        this.currentListName = name;
+        this.description = Administrator.getInstance().getListByName(this.currentListName).getDescription();
     }
+
+    public void setListToEdit(String nameOfList){
+        this.currentListName = nameOfList;
+        this.description = Administrator.getInstance().getListByName(this.currentListName).getDescription();
+    }
+
+
 
 
     public void onAddArticleClick(){
         Parent root;
         try {
-
             // Cargar la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("newArticle.fxml"));
             root = loader.load();
@@ -97,12 +103,31 @@ public class MyListController {
             stage.setScene(new Scene(root, 600, 400));
             //envía el nombre de la lista que se está usando actualmente
             NewArticleController articleController = loader.getController();
-            articleController.setNameOfCurrentList(this.name);
+            articleController.setNameOfCurrentList(this.currentListName);
 
             // Muestra la ventana
             stage.show();
             //((Node)(event.getSource())).getScene().getWindow().hide();
             Stage currentStage = (Stage) addArticleButton.getScene().getWindow();
+            currentStage.hide();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void OnClickBackToSample(){
+        Parent root;
+        try {
+            // Cargar la nueva ventana
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Control de Listas de Compra");
+            stage.setScene(new Scene(root, 759, 571));
+            //No se necesita enviar nada ya que se vuelve a incicializar
+            // Muestra la ventana
+            stage.show();
+            Stage currentStage = (Stage) backToSampleButton.getScene().getWindow();
             currentStage.hide();
         }
         catch (IOException e) {

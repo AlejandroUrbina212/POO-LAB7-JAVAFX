@@ -27,14 +27,14 @@
             <Font size="58.0" />
          </font>
       </Label>
-      <Button fx:id="newListButton" mnemonicParsing="false" onAction="#openNewList" prefHeight="50.0" prefWidth="130.0" text="Nueva Lista" translateX="475" translateY="0" GridPane.columnIndex="1">
+      <Button fx:id="newListButton" mnemonicParsing="false" onAction="#openNewList" prefHeight="50.0" prefWidth="130.0" text="Nueva Lista" translateX="455" translateY="0" GridPane.columnIndex="1">
           <font>
             <Font name="Comic Sans MS" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonEditar" mnemonicParsing="false" prefHeight="47.0" prefWidth="129.0" text="Editar" translateX="475" translateY="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Button fx:id="editListButton" mnemonicParsing="false" onAction="#onEditListPressed" prefHeight="47.0" prefWidth="111.0" text="Editar" translateX="360" translateY="0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
-            <Font name="Comic Sans MS" size="22.0" />
+            <Font name="Comic Sans MS" size="20.0" />
          </font>
       </Button>
       <TableView fx:id="listsTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -45,6 +45,11 @@
             <TableColumn fx:id="estimatedColumn" prefWidth="146.0" text="Estimado" />
         </columns>
       </TableView>
+      <Button fx:id="deleteListButton" mnemonicParsing="false" onAction="#onDeleteListPressed" text="Eliminar" translateX="500" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <font>
+            <Font name="Comic Sans MS" size="21.0" />
+         </font>
+      </Button>
 
    </children>
 </GridPane>

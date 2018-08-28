@@ -71,12 +71,11 @@ public class NewListController {
     public void OnClickBackToSample(ActionEvent event){
         Parent root;
         try {
-
             // Cargar la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
             root = loader.load();
             Stage stage = new Stage();
-            stage.setTitle("Nueva Lista");
+            stage.setTitle("Control de Listas de Compras");
             stage.setScene(new Scene(root, 759, 571));
             //No se necesita enviar nada ya que se vuelve a incicializar
             // Muestra la ventana

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,7 +40,8 @@ public class Controller {
     TableColumn<List, String> estimatedColumn;
     @FXML
     Button newListButton;
-
+    @FXML
+    Button editListButton;
     private ObservableList<List> data;
     @FXML
     public void initialize() {
@@ -82,7 +84,55 @@ public class Controller {
         }
     }
     // FALTA LA PARTE DE EDITAR
+    public void onEditListPressed(){
+        List listToEdit = listsTable.getSelectionModel().getSelectedItem();
+        Parent root;
+        try {
+            if (listToEdit != null) {
+                // Cargar la nueva ventana
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("myList.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Lista del Super");
+                stage.setScene(new Scene(root, 661, 510));
 
+                // Manda a los Labels el nombre y la descripción de la lista
+                MyListController myListController = loader.getController();
+                myListController.setListToEdit(listToEdit.getName());
+                myListController.showData();
+
+                // Muestra la ventana
+                stage.show();
+                Stage currentStage = (Stage) editListButton.getScene().getWindow();
+                currentStage.hide();
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Aviso!");
+                alert.setHeaderText("Por favor seleccione una lista de la tabla!");
+                alert.show();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+    public void onDeleteListPressed(){
+        List listToDelete =  listsTable.getSelectionModel().getSelectedItem();
+        if (listToDelete != null){
+            Administrator.getInstance().getListBook().remove(listToDelete);
+            initialize();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Aviso!");
+            alert.setHeaderText("Por favor seleccione una lista de la tabla!");
+            alert.show();
+        }
+
+
+    }
 
 
 
