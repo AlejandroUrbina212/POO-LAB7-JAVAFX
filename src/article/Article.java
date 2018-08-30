@@ -45,7 +45,7 @@ public class Article {
         return this.name.get();
     }
 
-    public void toggle(){
+    public void toggle(){ //cambia el estado al negar el estado dependiendo de su estado inicial
         if (!this.getState()){
             this.state = new SimpleBooleanProperty(true);
         }

@@ -51,8 +51,8 @@ public class MyListController {
     public void showData(){
         listNameLabel.setText(this.currentListName);
         listDescriptionLabel.setText(this.description);
-        Double pending = Administrator.getInstance().getListByName(this.currentListName).getSumOfPendings();
-        pendingLabel.setText(pending.toString());
+        double pending = Administrator.getInstance().getListByName(this.currentListName).getSumOfPendings();
+        pendingLabel.setText(Double.toString(pending));
 
         this.data = FXCollections.observableArrayList(Administrator.getInstance().getListByName(this.currentListName).getAllArticles());
         articleColumn.setCellValueFactory(
@@ -137,7 +137,7 @@ public class MyListController {
             e.printStackTrace();
         }
     }
-    public void onClickToggle(){
+    public void onClickToggle(){ //Cambia el estado de un artículo seleccionado en la lista de artículos
         Article article =  articlesTable.getSelectionModel().getSelectedItem();
         if (article != null){
             Administrator.getInstance().getListByName(this.currentListName).toggleArticlebyName(article.getName());

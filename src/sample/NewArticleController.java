@@ -26,7 +26,7 @@ public class NewArticleController {
     @FXML
     Button backToMyListButton;
 
-    public Boolean noneEmpty(){
+    public Boolean noneEmpty(){ //verifica si no falta ningún campo
         if (this.nameTextField.getText().equals("") || this.nameTextField == null || this.quantityTextField.getText().equals("") || this.quantityTextField == null
                 || this.priceTextField.getText().equals("") || this.priceTextField == null){
             return false;
@@ -36,7 +36,7 @@ public class NewArticleController {
     }
 
     public void setNameOfCurrentList(String name){
-        //cuando es llamado desde +createNewarticle
+        //cuando es llamado desde +createNewArticle
         this.nameOfCurrentList = name;
     }
 

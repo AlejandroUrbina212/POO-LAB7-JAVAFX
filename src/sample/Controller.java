@@ -47,7 +47,8 @@ public class Controller {
     public void initialize() {
         DateTimeFormatter myDateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        this.data = FXCollections.observableArrayList(Administrator.getInstance().getListBook());
+        this.data = FXCollections.observableArrayList(Administrator.getInstance().getListBook()); //se instancia el admin y además se extrae el
+        //listBook para llenar la tabla de listas
 
         nameColumn.setCellValueFactory(
                 new PropertyValueFactory<>("name")
@@ -96,7 +97,7 @@ public class Controller {
                 stage.setTitle("Lista del Super");
                 stage.setScene(new Scene(root, 661, 510));
 
-                // Manda a los Labels el nombre y la descripción de la lista
+                // Manda a los Labels de myList.FXML el nombre de la lista
                 MyListController myListController = loader.getController();
                 myListController.setListToEdit(listToEdit.getName());
                 myListController.showData();
@@ -106,7 +107,7 @@ public class Controller {
                 Stage currentStage = (Stage) editListButton.getScene().getWindow();
                 currentStage.hide();
 
-            } else {
+            } else { //muestra una ventana de alerta en caso de que no haya una lista seleccionada
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Aviso!");
                 alert.setHeaderText("Por favor seleccione una lista de la tabla!");
@@ -118,10 +119,10 @@ public class Controller {
 
         }
     }
-    public void onDeleteListPressed(){
+    public void onDeleteListPressed(){ //se instancia una lista del item seleccionado en la dataTable
         List listToDelete =  listsTable.getSelectionModel().getSelectedItem();
         if (listToDelete != null){
-            Administrator.getInstance().getListBook().remove(listToDelete);
+            Administrator.getInstance().getListBook().remove(listToDelete); //eliminación de la lista de listBook
             initialize();
 
         } else {

@@ -28,11 +28,8 @@ public class NewListController {
     Button backToSampleButton;
 
 
-    private boolean verifyTextFields(){
-        if (this.nameTextField.getText().equals("") || this.nameTextField == null || this.descriptionTextField.getText().equals("") || this.descriptionTextField == null){
-            return false;
-        }
-        return true;
+    private boolean verifyTextFields(){ //verifica si los campos y si no están llenos muestra un mensaje.
+        return !this.nameTextField.getText().equals("") && this.nameTextField != null && !this.descriptionTextField.getText().equals("") && this.descriptionTextField != null;
     }
     public void onClickAdd(ActionEvent event){
         Parent root;
@@ -45,7 +42,7 @@ public class NewListController {
                 stage.setTitle("Lista del Super");
                 stage.setScene(new Scene(root, 661, 510));
 
-                // Manda a los Labels el nombre y la descripción de la lista
+                // Manda a los Labels el nombre y la descripción de la lista myList.Controller
                 MyListController myListController = loader.getController();
                 myListController.setProperties(nameTextField.getText(), descriptionTextField.getText());
                 myListController.showData();
@@ -54,8 +51,6 @@ public class NewListController {
                 stage.show();
                 Stage currentStage = (Stage) createButton.getScene().getWindow();
                 currentStage.close();
-                // Hide this current window (if this is what you want)
-                // ((Node)(event.getSource())).getScene().getWindow().hide();
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Aviso!");
@@ -86,7 +81,5 @@ public class NewListController {
             e.printStackTrace();
         }
     }
-
-
 
 }

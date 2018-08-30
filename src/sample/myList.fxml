@@ -24,7 +24,7 @@
             <Font name="Comic Sans MS" size="18.0" />
          </font>
       </Button>
-      <Label fx:id="listDescriptionLabel" contentDisplay="TOP" layoutX="47.0" layoutY="95.0" prefHeight="95.0" prefWidth="576.0">
+      <Label fx:id="listDescriptionLabel" contentDisplay="TOP" layoutX="52.0" layoutY="95.0" prefHeight="95.0" prefWidth="576.0">
          <font>
             <Font name="Comic Sans MS" size="20.0" />
          </font>
@@ -49,7 +49,7 @@
           <TableColumn fx:id="quantityColumn" prefWidth="90.0" text="Cantidad" />
           <TableColumn fx:id="priceColumn" prefWidth="110.0" text="Unitario" />
           <TableColumn fx:id="totalColumn" prefWidth="113.0" text="Total" />
-          <TableColumn fx:id="stateColumn" prefWidth="110.0" text="Estado" />
+          <TableColumn fx:id="stateColumn" prefWidth="110.0" text="Completado" />
 
         </columns>
       </TableView>

@@ -55,22 +55,22 @@ public class List {
         return this.articles;
     }
     public double getSumOfPendings(){
-        return this.articles.stream()             // convert list to stream
+        return this.articles.stream()   //suma en la lista aquellos artículos que tienen el estado en falso
                 .filter(article -> !article.getState())
                 .mapToDouble(article -> article.getTotal())
-                //.mapToDouble( article -> article.getPrice() * article.getQuantity())
                 .sum();
     }
 
-    public void toggleArticlebyName(String name){
+    public void toggleArticlebyName(String name){ //busca un artículo por nombre y aplica .toggle en dicho artículo (cambia estado)
         for (int x=0; x<articles.size(); x++){
             if (articles.get(x).getName() == name){
-                Article articleToToggle = articles.get(x);
-                articleToToggle.toggle();
+                articles.get(x).toggle();
+                this.estimated = new SimpleDoubleProperty(getSumOfPendings());
+                this.pending = new SimpleIntegerProperty(getPendingArticles().size());
             }
         }
     }
-    public void addArticle(Article article) {
+    public void addArticle(Article article) { //añade un nuevo artículo y hace un update en los pendientes y estimados
         this.articles.add(article);
         this.estimated = new SimpleDoubleProperty(getSumOfPendings());
         this.pending = new SimpleIntegerProperty(getPendingArticles().size());
